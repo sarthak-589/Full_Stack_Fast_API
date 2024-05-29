@@ -1,0 +1,1 @@
+In this project I have done Full Stack Application using Fast API

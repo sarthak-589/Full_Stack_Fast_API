@@ -1,0 +1,58 @@
+{% include 'layout.html' %}
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Your Todos!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">List of your Todos!</h5>
+            <p class="card-text">Information regarding stuff that needs to be complete</p>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Actions</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    {% for todo in todos %}
+                    {% if todo.complete == False %}
+                    <tr class="pointer">
+
+                        <td>{{todo.title}}</td>
+                        <td>{{todo.description}}</td>
+                        <td>{{todo.priority}}</td>
+                        <td>
+                            <a href='complete/{{todo.id}}'><button type="button" class="btn btn-success">Complete</button></a>
+                            <a href='edit-todo/{{todo.id}}'><button type="button" class="btn btn-info">Edit</button></a>
+                            <a href='/todos/delete/{{todo.id}}'><button type="button" class="btn btn-danger">Delete</button></a>
+                        </td>
+                    </tr>
+
+                    {% else %}
+
+                    <tr class="pointer alert alert-success">
+
+                        <td class="strike-through-td">{{todo.title}}</td>
+                        <td>{{todo.description}}</td>
+                        <td>{{todo.priority}}</td>
+                        <td>
+                            <a href='complete/{{todo.id}}'><button type="button" class="btn btn-success">Undo</button></a>
+                            <a href='edit-todo/{{todo.id}}'><button type="button" class="btn btn-info">Edit</button></a>
+                            <a href='/todos/delete/{{todo.id}}'><button type="button" class="btn btn-danger">Delete</button></a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="add-todo" class="btn btn-primary">Add a new Todo</a>
+        </div>
+    </div>
+</div>
